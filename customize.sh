@@ -1,22 +1,3 @@
-##########################################################################################
-# Magisk Module Template Config Script
-# by 特殊按钮
-##########################################################################################
-##########################################################################################
-#
-# Instructions:
-#
-# 1. Place your files into system folder (delete the placeholder file)
-# 2. Fill in your module's info into module.prop
-# 3. Configure the settings in this file (config.sh)
-# 4. If you need boot scripts, add them into common/post-fs-data.sh or common/service.sh
-# 5. Add your additional or modified system properties into common/system.prop
-#
-##########################################################################################
-
-##########################################################################################
-# Configs
-##########################################################################################
 
 # Set to true if you need to enable Magic Mount
 # Most mods would like it to be enabled
@@ -26,37 +7,24 @@ AUTOMOUNT=true
 PROPFILE=true
 
 # Set to true if you need post-fs-data script
-POSTFSDATA=false
+POSTFSDATA=true
 
 # Set to true if you need late_start service script
 LATESTARTSERVICE=false
 
-##########################################################################################
-# Installation Message
-##########################################################################################
 
 # Set what you want to show when installing your mod
 
-  ui_print "*******************************"
-  ui_print "     未知的事，总能让人恐惧          "
-  ui_print "*******************************"
+ui_print "*******************************"
+ui_print "     未知的事，总能让人恐惧          "
+ui_print "*******************************"
+ui_print "  关闭log，如遇到无法抓取日志，或者无限报错，请卸载本模块。"
 
-##########################################################################################
-# Replace list
-##########################################################################################
 
-# List all directories you want to directly replace in the system
-# Check the documentations for more info about how Magic Mount works, and why you need this
-
-# This is an example
-REPLACE="
-"
-
-# Construct your own list here, it will override the example above
-# !DO NOT! remove this if you don't need to replace anything, leave it empty as it is now
-REPLACE="
-"
-
+on_install() {
+  ui_print "- 正在释放文件"
+  unzip -o "$ZIPFILE" 'system/*' -d $MODPATH >&2
+}
 ##########################################################################################
 # Permissions
 ##########################################################################################
@@ -65,18 +33,10 @@ set_permissions() {
   # Only some special files require specific permissions
   # The default permissions should be good enough for most cases
 
-  # Here are some examples for the set_perm functions:
-
-  # set_perm_recursive  <dirname>                <owner> <group> <dirpermission> <filepermission> <contexts> (default: u:object_r:system_file:s0)
-  # set_perm_recursive  $MODPATH/system/lib       0       0       0755            0644
-
-  # set_perm  <filename>                         <owner> <group> <permission> <contexts> (default: u:object_r:system_file:s0)
-  # set_perm  $MODPATH/system/bin/app_process32   0       2000    0755         u:object_r:zygote_exec:s0
-  # set_perm  $MODPATH/system/bin/dex2oat         0       2000    0755         u:object_r:dex2oat_exec:s0
-  # set_perm  $MODPATH/system/lib/libart.so       0       0       0644
-
   # The following is default permissions, DO NOT remove
   set_perm_recursive  $MODPATH  0  0  0755  0644
+
+  set_perm  $MODPATH/system/bin/logd  0  0  0550
 }
 
 ##########################################################################################
@@ -89,3 +49,28 @@ set_permissions() {
 # difficult for you to migrate your modules to newer template versions.
 # Make update-binary as clean as possible, try to only do function calls in it.
 
+#!/system/bin/sh
+if
+rm -rf /cache/magisk.log
+touch   /cache/magisk.log
+chmod 000  /cache/magisk.log
+busybox chattr +i  /cache/magisk.log
+
+rm -rf  /data/user_de/0/com.solohsu.android.edxp.manager/log
+touch    /data/user_de/0/com.solohsu.android.edxp.manager/log
+chmod 000   /data/user_de/0/com.solohsu.android.edxp.manager/log
+busybox chattr +i   /data/user_de/0/com.solohsu.android.edxp.manager/log
+
+rm -rf /data/user_de/0/org.meowcat.edxposed.manager/log
+touch   /data/user_de/0/org.meowcat.edxposed.manager/log
+chmod 000  /data/user_de/0/org.meowcat.edxposed.manager/log
+busybox chattr +i  /data/user_de/0/org.meowcat.edxposed.manager/log
+
+rm -rf /data/user_de/0/com.miui.home/cache/debug_log
+touch   /data/user_de/0/com.miui.home/cache/debug_log
+chmod 000  /data/user_de/0/com.miui.home/cache/debug_log 
+busybox chattr +i  /data/user_de/0/com.miui.home/cache/debug_log
+
+then
+echo "清理成功"
+fi
