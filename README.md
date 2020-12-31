@@ -3,6 +3,7 @@ My personal magisk module for MIUI optimization
 ---
 
 > Inititally based on "MIUI功能添加（第四版）" by ガケギ🎐绘梨衣の桜花🌸. 
+> Merged MIUI12系统性能优化v1.3(正式版) by 酷安@雪中刀
 
 ### Optimizations:
 * 玄学优化

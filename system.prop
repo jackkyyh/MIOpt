@@ -27,6 +27,7 @@ debug.mdpcomp.logs=0
 dalvik.vm.dex2oat-minidebuginfo=false
 persist.sys.qlogd=0
 persist.sys.perf.debug=false
+
 #sqlite提速(来自水龙，poolsize=6-8）
 debug.sqlite.wal.poolsize=6
 debug.sqlite.wal.syncmode=OFF
