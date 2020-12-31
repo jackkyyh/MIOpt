@@ -9,7 +9,10 @@ My personal magisk module for MIUI optimization
 * sqlite提速
 * 禁用一些无用的日志和调试
 * 关闭ramdump
-* 开启优化SurfaceFlinger缓冲区、数据加速。
+* 开启优化SurfaceFlinger缓冲区
+* 数据加速
+* 提升屏幕柔顺度
+* 跟手性优化
 
 
 ### Features:

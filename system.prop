@@ -1,22 +1,4 @@
-ro.vendor.audio.soundtrigger.sensitivity=true
-vendor.audio.soundtrigger.sensitivity=true
-persist.vendor.vcb.enable=true
-persist.vendor.vcb.ability=true
-debug.sf.latch_unsignaled=1
-ro.vendor.audio.spk.clean=true
-ro.vendor.audio.spk.stereo=true
-ro.vendor.audio.vocal.support=true
-ro.vendor.audio.surround.support=true
-
-#加入立体声音效(miui)（玄学）
-ro.vendor.audio.spk.stereo=true
-ro.vendor.audio.sfx.spk.stereo=true
-
-#关闭ramdump
-persist.vendor.ssr.enable_ramdumps=0
-
 #关闭一些没用的调试和日志
-persist.sys.perf.debug=false
 persist.sys.perf.debug=false
 debugtool.anrhistory=0
 profiler.hung.dumpdobugreport=false
@@ -25,10 +7,43 @@ persist.sys.whetstone.level=0
 persist.radio.adb_log_on=0
 persist.data.qmi.adb_logmask=0
 
+persist.vendor.ssr.enable_ramdumps=0
+vendor.bluetooth.startbtlogger=false
+persist.sys.offlinelog.kernel=false
+persist.sys.offlinelog.logcat=false
+persist.sys.offlinelog.logcatkernel=false
+ro.logdumpd.enabled=0
+ro.logd.size.stats=4K
+
+ro.lmk.debug=false
+
+vendor.persist.camera.stats.test=0
+ro.debuggable=0
+ro.logdumpd.enabled=0
+debug.mdpcomp.logs=0
+
+# Android ART LOGD
+
+dalvik.vm.dex2oat-minidebuginfo=false
+persist.sys.qlogd=0
+persist.sys.perf.debug=false
 #sqlite提速(来自水龙，poolsize=6-8）
 debug.sqlite.wal.poolsize=6
 debug.sqlite.wal.syncmode=OFF
 debug.sqlite.journalmode=OFF
+
+#关闭ramdump
+persist.vendor.ssr.enable_ramdumps=0
+
+#加入立体声音效(miui)（玄学）
+ro.vendor.audio.spk.stereo=true
+ro.vendor.audio.sfx.spk.stereo=true
+
+ro.vendor.audio.spk.clean=true
+ro.vendor.audio.soundtrigger.sensitivity=true
+vendor.audio.soundtrigger.sensitivity=true
+ro.vendor.audio.vocal.support=true
+ro.vendor.audio.surround.support=true
 
 #微信视频美颜(miui)
 persist.vendor.vcb.enable=true
@@ -40,9 +55,6 @@ ro.vendor.audio.game.effect=true
 
 #开启MEMC动态补偿（miui）（UI 开关）
 ro.vendor.media.video.frc.support=true
-
-# MIUI运行模式(节能=low;均衡=middle;性能=high)
-persist.sys.aries.power_profile=high
 
 #AI预加载
 persist.sys.ai_preload_cloud=1
@@ -58,3 +70,14 @@ ro.vendor.net.enable_sla=1
 
 #开启优化SurfaceFlinger缓冲区
 debug.sf.latch_unsignaled=1
+
+#屏幕柔顺度提升（玄学，值越大越激进）
+windowsmgr.max_events_per_sec=280
+
+#跟手性优化
+tapslop=110
+ro.min_pointer_dur=0.00001
+touch.size.bias=0
+touch.orientation.calibration=none
+touch.distance.calibration=none
+
